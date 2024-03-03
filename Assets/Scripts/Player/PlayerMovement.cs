@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -28,6 +31,15 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleMovement();
         HandleZombiesDetection();
+        HandleProjecter();
+    }
+    private void HandleProjecter()
+    {
+        if(isInProjecterSeat)
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Win();
+            }
     }
     private void HandleMovement()
     {
@@ -81,12 +93,17 @@ public class PlayerMovement : MonoBehaviour
     Vector3 topOfSeatHeaigh=Vector3.up*2;
     [SerializeField] float swipeToTopDuration;
     [SerializeField] float swipeToBottomDuration;
+    AudioSource audioSource;
+    [SerializeField] AudioClip[] jumpSounds;
+    [SerializeField] AudioClip loseSound, WinSound;
     public void MovePlayer()
     {
         isMoving = true;
         canMove = false;
         Vector3 destenation = SeatsGrid.Singleton.seatsPositions[playerPosition.x, playerPosition.y].position;
         animator.SetBool(FallingParam, true);
+        audioSource.clip = jumpSounds[Random.Range(0, 4)];
+        audioSource.Play();
         LeanTween.move(gameObject, destenation + topOfSeatHeaigh, swipeToTopDuration).setOnComplete(() =>
         LeanTween.move(gameObject, destenation, swipeToTopDuration).setOnComplete(() =>
         {
@@ -108,10 +125,57 @@ public class PlayerMovement : MonoBehaviour
     {
       zombiesSeeingPlayer.Remove(zombie);
     }
+    [Space]
+    [Header("End Section")]
+    [SerializeField] GameObject Instructions;
+    [SerializeField] GameObject lose;
+    [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] VideoClip realStory;
     private void Lose()
     {
         isMoving = false;
         canMove = false;
         print("Lose");
+        audioSource.clip = loseSound;
+        audioSource.Play();
+        Instructions.SetActive(false);
+        lose.SetActive(true);
+        StartCoroutine(CO_RestartLevel());
+    }
+    private void Win()
+    {
+        audioSource.clip = WinSound;
+        audioSource.Play();
+        Instructions.SetActive(false);
+        pressE.SetActive(false);
+        isInProjecterSeat = false;
+        canMove = false;
+        videoPlayer.Stop();
+        videoPlayer.clip = realStory;
+        videoPlayer.Play();
+        videoPlayer.isLooping = false;
+        videoPlayer.loopPointReached += VideoPlayer_loopPointReached;
+    }
+
+    private void VideoPlayer_loopPointReached(VideoPlayer source)
+    {
+        Application.Quit();
+    }
+
+    IEnumerator CO_RestartLevel()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
+    }
+    const string projecterTag="projecter";
+    [SerializeField] GameObject pressE;
+    bool isInProjecterSeat;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(projecterTag))
+        {
+            pressE.SetActive(true);
+            isInProjecterSeat = true;
+        }
     }
 }
