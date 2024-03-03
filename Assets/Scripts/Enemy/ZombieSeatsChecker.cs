@@ -14,6 +14,7 @@ public class ZombieSeatChecker : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        if (patrolPoints.Length!=0)
         StartCoroutine(CO_WaitBeforeNextPatrol());
     }
 
