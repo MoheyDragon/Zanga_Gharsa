@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
         isMoving = false;
+        Invoke(nameof(StartLevel), .1f);
     }
     public void StartLevel()
     {
@@ -25,10 +26,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartLevel();
-        }
         HandleMovement();
         HandleZombiesDetection();
     }
