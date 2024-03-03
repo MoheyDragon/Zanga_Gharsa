@@ -5792,7 +5792,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.04250824, y: -0.26925012, z: 0.0118967295, w: 0.9620582}
+  m_LocalRotation: {x: 0.042508233, y: -0.26925012, z: 0.011896727, w: 0.9620582}
   m_LocalPosition: {x: 9.31, y: 4.95, z: -3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7608,16 +7608,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5620158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5620158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5620158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.073
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.383
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.075
+      value: -0.12218
       objectReference: {fileID: 0}
     - target: {fileID: 4179618915279700, guid: b5cb50f10b463654b84fc0bd219cc613, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21373,7 +21385,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112358904}
-  m_LocalRotation: {x: 0.04250824, y: -0.26925012, z: 0.0118967295, w: 0.9620582}
+  m_LocalRotation: {x: 0.042508233, y: -0.26925012, z: 0.011896727, w: 0.9620582}
   m_LocalPosition: {x: 9.31, y: 4.95, z: -3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
