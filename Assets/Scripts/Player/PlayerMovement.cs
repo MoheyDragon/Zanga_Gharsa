@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
         ));
     }
-    List<Transform> zombiesSeeingPlayer;
+    List<Transform> zombiesSeeingPlayer=new List<Transform>();
     public void PlayerEnteredZombieVision(Transform zombie)
     {
         if (!zombiesSeeingPlayer.Contains(zombie))

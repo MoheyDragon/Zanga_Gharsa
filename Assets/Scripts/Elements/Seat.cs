@@ -29,9 +29,7 @@ public class Seat:MonoBehaviour
     }
     public bool isAccessable()
     {
-        bool returnValue= !isOccupied && !hasZombiesNearby;
-        print(returnValue);
-        return returnValue;
+        return !isOccupied && !hasZombiesNearby;
     }
     public void ZombieEnterSeatArea(Transform zombie)
     {
